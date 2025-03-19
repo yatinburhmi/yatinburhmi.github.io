@@ -1,55 +1,79 @@
-import {
-  HeaderWrapper,
-  Logo,
-  NavLinks,
-  MobileMenuIcon,
-  MobileMenu,
-  HeaderContainer,
-} from "./styles";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
-
-const Header = () => {
+import {
+  contactSection,
+  experienceSection,
+  greeting,
+  projectSection,
+  resumeSection,
+} from "../../utilities/constants";
+import Resume from "../../assets/YatinBurhmi_Resume.pdf";
+import { Container } from "./styles";
+export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log("🚀 ~ Header ~ isMenuOpen:", isMenuOpen);
+  function toggleTheme() {
+    const html = document.getElementsByTagName("html")[0];
+    html.classList.toggle("light");
+  }
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+  const experienceDisplay = experienceSection.display;
+  const projectDisplay = projectSection.display;
+  const contactDisplay = contactSection.display;
+  const resumeDisplay = resumeSection.display;
   return (
-    <HeaderContainer>
-      <HeaderWrapper>
-        <Logo>
-          <span>&lt;</span>
-          <span>Yatin Burhmi</span>
-          <span>/&gt;</span>
-        </Logo>
-
-        <NavLinks>
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </NavLinks>
-
-        {/* Mobile Menu Icon */}
-        <MobileMenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          ☰
-        </MobileMenuIcon>
-
-        {/* Mobile Dropdown Menu */}
-        <MobileMenu $isOpen={isMenuOpen}>
-          <a href="#home" onClick={() => setIsMenuOpen(false)}>
+    <Container className="header-fixed">
+      <Router>
+        <a href="#home" className="logo-name">
+          <span>{greeting.username}</span>
+        </a>
+        <input
+          onChange={toggleTheme}
+          className="container_toggle"
+          type="checkbox"
+          id="switch"
+          name="mode"
+        />
+        <label htmlFor="switch">Toggle</label>
+        <nav className={isMenuOpen ? "active" : ""}>
+          <a href="#home" onClick={closeMenu}>
             Home
           </a>
-          <a href="#about" onClick={() => setIsMenuOpen(false)}>
-            About
-          </a>
-          <a href="#projects" onClick={() => setIsMenuOpen(false)}>
-            Projects
-          </a>
-          <a href="#contact" onClick={() => setIsMenuOpen(false)}>
-            Contact
-          </a>
-        </MobileMenu>
-      </HeaderWrapper>
-    </HeaderContainer>
+          {experienceDisplay && (
+            <a href="#experience" onClick={closeMenu}>
+              {experienceSection.title}
+            </a>
+          )}
+          {/* <a href="#about" onClick={closeMenu}>
+            About me
+          </a> */}
+          {projectDisplay && (
+            <a href="#project" onClick={closeMenu}>
+              {projectSection.title}
+            </a>
+          )}
+          {contactDisplay && (
+            <a href="#contact" onClick={closeMenu}>
+              {contactSection.title}
+            </a>
+          )}
+          {resumeDisplay && (
+            <a href={Resume} download className="button">
+              {resumeSection.title}
+            </a>
+          )}
+        </nav>
+        <div
+          aria-expanded={isMenuOpen ? "true" : "false"}
+          aria-haspopup="true"
+          aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+          className={isMenuOpen ? "menu active" : "menu"}
+          onClick={() => {
+            setIsMenuOpen(!isMenuOpen);
+          }}
+        ></div>
+      </Router>
+    </Container>
   );
-};
-
-export default Header;
+}
