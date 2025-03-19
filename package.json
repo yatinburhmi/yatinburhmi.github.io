@@ -1,8 +1,9 @@
 {
-  "name": "portfolio",
+  "name": "yatinburhmi.github.io",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://yatinburhmi.github.io/yatinburhmi.github.io",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
