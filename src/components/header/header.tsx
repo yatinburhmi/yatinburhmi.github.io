@@ -7,7 +7,7 @@ import {
   projectSection,
   resumeSection,
 } from "../../utilities/constants";
-import Resume from "../../assets/YatinBurhmi_Resume.pdf";
+import Resume from "../../assets/Yatin_Burhmi_Resume.pdf";
 import { Container } from "./styles";
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
