@@ -63,7 +63,7 @@ const experiences = [
 
 const projectSection = {
   title: "Projects",
-  display: false,
+  display: true,
 };
 
 interface IProject {
@@ -78,14 +78,14 @@ interface IProject {
 export type { IProject as IProjectType };
 
 const projects: Array<IProject> = [
-  // {
-  //   id: 1,
-  //   title: "",
-  //   description: "",
-  //   tech: [""],
-  //   github: "",
-  //   demo: "",
-  // },
+  {
+    id: 1,
+    title: "AI Interview Mocker",
+    description: "",
+    tech: ["NextJS, Drizzle ORM, Postgresql NEON DB, Typescript, Clerk Auth"],
+    github: "",
+    demo: "https://ai-interview-mocker-yatin.vercel.app/",
+  },
 ];
 
 const contactSection = {
